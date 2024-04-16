@@ -1,0 +1,10 @@
+body {
+    background:#efefef;
+}
+
+
+sportlink-team {
+    --sportlink-team-font-family: Arial;
+    --sportlink-team-font-family-header: Courier;
+    --sportlink-team-text-align: center;
+}
