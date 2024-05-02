@@ -2,6 +2,11 @@ body {
     background:#efefef;
 }
 
+.main {
+    max-width: 72em;
+    margin: 0 auto
+}
+
 
 sportlink-team {
     --sportlink-team-font-family: Arial;
