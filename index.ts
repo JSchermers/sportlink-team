@@ -10,7 +10,7 @@ class SportlinkTeam extends LitElement {
       flex-direction: row;
       justify-content: flex-start;
       align-items: flex-start;
-      gap: var(--sportlink-team-grid-gap, 10px);   
+      gap: var(--sportlink-team-grid-gap, 1em);   
       list-style: none;
       margin: 0;
       padding: 0;
@@ -21,12 +21,26 @@ class SportlinkTeam extends LitElement {
       width: 150px;      
       display: flex;
       flex-direction: column;
-      justify-content: start;      
-
+      justify-content: start;  
+      align-self: stretch;
+      background: var(--background-sportlink-team-card, none);    
+      border-radius: var(--background-sportlink-team-card-border-radius, 0);
     }
 
     .grid-item svg {
       max-width: 100%;
+    }
+
+    .naam {
+      padding-block: var(--padding-block-sportlink-team-name-player, 0);
+      padding-inline: var(--padding-inline-sportlink-team-name-player, 0);  
+      color: var(--padding-inline-sportlink-team-name-player-textcolor, inherit);      
+    }
+
+    .functie {
+      padding-block: var(--padding-block-sportlink-team-name-staff, 0);
+      padding-inline: var(--padding-inline-sportlink-team-name-staff, 0);  
+      color: var(--padding-inline-sportlink-team-name-staff-textcolor, inherit); 
     }
 
   `;
@@ -97,7 +111,7 @@ class SportlinkTeam extends LitElement {
 
   private renderTeam() {
     return html`
-      <h2>Spelers</h2>
+      <h2><slot name="players"></slot></h2>
       <ul class="team grid">
         ${this.data.map((member) => {
           return member.rol === "Teamspeler" ?
@@ -121,7 +135,7 @@ class SportlinkTeam extends LitElement {
 
   private renderStaff() {
     return html`
-      <h2>Staff</h2>
+      <h2><slot name="staff"></slot></h2>
       <ul class="staf grid">
       ${this.data.map((member) => {
         return member.rol !== "Teamspeler" ?
