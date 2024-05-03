@@ -39,6 +39,5 @@ It is a webcomponent for displaying team members from a football club.
 | SLOTName | Position |
 | slot="players" | Title above the players |
 | slot="staff" | Title above the staff |
-
-
-### This component is in beta mode and not production ready
+| slot="noteams" | When there is no team |
+| slot="error" | When something goes wrong |

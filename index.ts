@@ -113,7 +113,7 @@ class SportlinkTeam extends LitElement {
     return html`
       <h2><slot name="players"></slot></h2>
       <ul class="team grid">
-        ${this.data.map((member) => {
+      ${this.data ? this.data.map((member) => {
           return member.rol === "Teamspeler" ?
           html`
             <li class="grid-item">
@@ -128,7 +128,8 @@ class SportlinkTeam extends LitElement {
               </div>
             </li>
           ` : null 
-        })}
+        }) : html`<li><slot name="noteam">Er zijn geen gegevens bekend.</slot><li>` 
+      }
       </ul>
     `
   }
@@ -137,7 +138,7 @@ class SportlinkTeam extends LitElement {
     return html`
       <h2><slot name="staff"></slot></h2>
       <ul class="staf grid">
-      ${this.data.map((member) => {
+      ${this.data ? this.data.map((member) => {
         return member.rol !== "Teamspeler" ?
         html`
           <li class="grid-item">
@@ -151,21 +152,21 @@ class SportlinkTeam extends LitElement {
               ${member.functie}
             </div>
           </li>
-        ` : null 
-      })}
+        ` : null
+      }) : html`<li><slot name="noteam">Er zijn geen gegevens bekend.</slot><li>` 
+    }
         </ul>
     `
   }
 
   render(): TemplateResult {
     return this.error
-      ? html`<div>Er is helaas iets misgegaan</div>`
+      ? html`<div><slot name="error">Helaas, er is iets misgegaan.</slot></div>`
       : this.loading
         ? html` <div>loading</div>`
         : html`<div class="team-main">        
             ${this.renderTeam()}         
-            ${this.renderStaff()}
-          
+            ${this.renderStaff()}          
         </div>
         `
   }
